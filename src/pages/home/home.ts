@@ -12,17 +12,18 @@ export class HomePage {
 
   coins: string[];
   errorMessage: string;
+  limit:number = 20;
 
   constructor(public navCtrl: NavController, public rest: RestProvider) {
 
   }
 
-  ionViewDidLoad() {
-    this.getTicker();
+  ionViewWillEnter() {
+    this.getTicker(this.limit);
   }
 
-  getTicker() {
-    this.rest.getTicker()
+  getTicker(limit) {
+    this.rest.getTicker(limit)
        .subscribe(
          coins => this.coins = coins,
          error =>  this.errorMessage = <any>error);

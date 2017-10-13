@@ -4,10 +4,13 @@ import { IonicPage } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-calculator',
+  templateUrl: 'calculator.html'
 })
-export class ContactPage {
+export class CalculatorPage {
+  currency: string;
+  coinAmount: number;
+  dollarAmount: number;
 
   constructor(public navCtrl: NavController) {
 

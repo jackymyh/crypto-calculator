@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <table style="width:100%;text-align:center">
+  <table>
     <tr>
       <th>Currency</th>
       <th>Price</th>
@@ -13,8 +13,8 @@
     </tr>
     <br>
     <tr *ngFor="let coin of coins">
-      <td><p>{{coin.name}}</p></td>
-      <td>${{coin.price_cad}}</td>
+      <td>{{coin.name}}</td>
+      <td>$ {{coin.price_cad | number:'1.2-5'}}</td>
       <td>{{coin.percent_change_1h}}%</td>
     </tr>
   </table>

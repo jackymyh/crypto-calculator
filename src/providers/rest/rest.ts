@@ -6,12 +6,13 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RestProvider {
-  private apiUrl = 'https://api.coinmarketcap.com/v1/ticker/?convert=CAD&limit=10';
+  private apiUrl = 'https://api.coinmarketcap.com/v1/ticker/?convert=CAD&limit=';
 
   constructor(public http: HttpClient) {
   }
 
-  getTicker(): Observable<string[]> {
+  getTicker(limit): Observable<string[]> {
+    this.apiUrl = this.apiUrl + limit;
     return this.http.get(this.apiUrl)
                     .map(this.extractData)
                     .catch(this.handleError);
