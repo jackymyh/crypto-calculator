@@ -10,23 +10,7 @@ import { IonicPage } from 'ionic-angular';
 })
 export class HomePage {
 
-  coins: string[];
-  errorMessage: string;
-  limit:number = 20;
-
   constructor(public navCtrl: NavController, public rest: RestProvider) {
-
-  }
-
-  ionViewWillEnter() {
-    this.getTicker(this.limit);
-  }
-
-  getTicker(limit) {
-    this.rest.getTicker(limit)
-       .subscribe(
-         coins => this.coins = coins,
-         error =>  this.errorMessage = <any>error);
   }
 
 }

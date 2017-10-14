@@ -5,17 +5,18 @@
 </ion-header>
 
 <ion-content padding>
-  <table>
+  <table *ngIf="rest.coinData; else noData">
     <tr>
       <th>Currency</th>
       <th>Price</th>
       <th>Change(1h)</th>
     </tr>
     <br>
-    <tr *ngFor="let coin of coins">
+    <tr *ngFor="let coin of rest.coinData">
       <td>{{coin.name}}</td>
       <td>$ {{coin.price_cad | number:'1.2-5'}}</td>
       <td>{{coin.percent_change_1h}}%</td>
     </tr>
   </table>
+  <ng-template #noData>Unable to load data :(</ng-template>
 </ion-content>

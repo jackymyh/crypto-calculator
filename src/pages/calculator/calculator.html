@@ -13,10 +13,12 @@
         <ion-label stacked>Currency</ion-label>
         <ion-input
           type="string"
-          [(ngModel)]="currency"
-          (ngModelChange)="selectCurrency()">
+          [(ngModel)]="coin">
         </ion-input>
       </ion-item>
+      <button ion-button color="dark" (click)="selectCoin()">
+        Choose Coin
+      </button>
     </ion-row>
     <ion-row>
       <ion-col col-6>
