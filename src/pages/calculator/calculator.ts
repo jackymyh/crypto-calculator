@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { RestProvider } from '../../providers/rest/rest';
 import { IonicPage } from 'ionic-angular';
 
 @IonicPage()
@@ -16,4 +17,7 @@ export class CalculatorPage {
 
   }
 
+  selectCurrency() {
+    console.log(this.currency)
+  }
 }

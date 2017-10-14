@@ -12,8 +12,9 @@ export class RestProvider {
   }
 
   getTicker(limit): Observable<string[]> {
-    this.apiUrl = this.apiUrl + limit;
-    return this.http.get(this.apiUrl)
+    let query = this.apiUrl + limit;
+    console.log(query);
+    return this.http.get(query)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
