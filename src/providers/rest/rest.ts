@@ -24,7 +24,7 @@ export class RestProvider {
     this.http.get(query).subscribe(data => {
       this.coinData = data;
       console.log(data);
-    }, (err: HttpErrorRespone) => {
+    }, err => {
       if (err.error instanceof Error) {
         // A client-side or network error occurred.
         console.log('An error occurred:', err.error.message);

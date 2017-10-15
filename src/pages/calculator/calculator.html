@@ -7,34 +7,60 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <ion-grid *ngIf="coinData; else noData">
     <ion-row>
-      <ion-item>
-        <ion-label stacked>Currency</ion-label>
-        <ion-input
-          type="string"
-          [(ngModel)]="coin">
-        </ion-input>
-      </ion-item>
-      <button ion-button color="dark" (click)="selectCoin()">
-        Choose Coin
-      </button>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>
-        <ion-item>
-          <ion-label stacked>Amount</ion-label>
-          <ion-input type="number" min="0"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-6>
-        <ion-item>
-          <ion-label stacked>Amount</ion-label>
-          <ion-input type="number" min="0"></ion-input>
-        </ion-item>
+      <ion-col>
+        <ion-item-group>
+          <ion-item-divider color="dark">Currency</ion-item-divider>
+            <ion-select
+              [(ngModel)]="coinName"
+              (ngModelChange)="selectCoin()">
+              <ion-option *ngFor="let coin of rest.coinData">{{coin.name}}</ion-option>
+            </ion-select>
+        </ion-item-group>
       </ion-col>
     </ion-row>
     <ion-row>
+      <ion-col>
+        <ion-item-group>
+          <ion-item-divider color="dark">Market Cap (CAD)</ion-item-divider>
+          <ion-item>${{coinData.market_cap_cad}}</ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item-divider color="dark">Price (CAD)</ion-item-divider>
+          <ion-item>${{coinData.price_cad}}/ {{coinData.symbol}}</ion-item>
+          <ion-item>${{coinData.conversion}} {{coinData.symbol}}/ {{rest.currency}}</ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item-divider color="dark">Change (1h)</ion-item-divider>
+          <ion-item>{{coinData.percent_change_1h}}%</ion-item>
+        </ion-item-group>
+        <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>Amount ({{coinData.symbol}})</ion-label>
+              <ion-input
+                type="number"
+                min="0"
+                [(ngModel)]="coinAmount"
+                (ngModelChange)="calcDollar()">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>Amount (CAD)</ion-label>
+              <ion-input
+                type="number"
+                min="0"
+                [(ngModel)]="dollarAmount"
+                (ngModelChange)="calcCoin()">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
     </ion-row>
   </ion-grid>
+  <ng-template #noData>Unable to load data :(</ng-template>
 </ion-content>

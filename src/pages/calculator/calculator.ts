@@ -9,13 +9,13 @@ import { IonicPage } from 'ionic-angular';
   templateUrl: 'calculator.html'
 })
 export class CalculatorPage {
-  coin: string = 'ethereum';
+  coinName: string = 'Ethereum';
+  coinList: any;
   coinData: any;
   coinAmount: number;
   dollarAmount: number;
 
   constructor(public navCtrl: NavController, public rest: RestProvider) {
-
   }
 
   ionViewWillEnter() {
@@ -23,13 +23,30 @@ export class CalculatorPage {
   }
 
   selectCoin() {
-    for (let coinInfo = 0; coinInfo < this.rest.coinData.length; coinInfo++) {
-      if (this.coin == this.rest.coinData[coinInfo]['id']) {
-        console.log('Coin found: ', this.rest.coinData[coinInfo]);
-        this.coinData = this.rest.coinData[coinInfo];
+    console.log('Looking for: ', this.coinName);
+    for (let coin = 0; coin < this.rest.coinData.length; coin++) {
+      if (this.coinName == this.rest.coinData[coin]['name']) {
+        this.coinData = this.rest.coinData[coin];
+        this.coinData.conversion = this.getConversionRate(this.rest.coinData[coin]['price_cad']);
+        this.calcCoin();
         return;
       }
     }
     console.log('Coin data not found');
+  }
+
+  getConversionRate(price) {
+    let rate = 1/price;
+    return rate;
+  }
+
+  calcDollar() {
+    console.log('calcDollar');
+    this.dollarAmount = this.coinAmount * this.coinData.price_cad;
+  }
+
+  calcCoin() {
+    console.log('calcCoin');
+    this.coinAmount = this.dollarAmount * this.coinData.conversion;
   }
 }
