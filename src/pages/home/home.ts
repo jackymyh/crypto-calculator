@@ -13,4 +13,11 @@ export class HomePage {
   constructor(public navCtrl: NavController, public rest: RestProvider) {
   }
 
+  percentChange(change) {
+    if (change < 0) {
+      return "red";
+    } else {
+      return "green";
+    }
+  }
 }

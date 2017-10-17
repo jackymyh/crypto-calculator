@@ -4,19 +4,61 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <table *ngIf="rest.coinData; else noData">
-    <tr>
-      <th>Currency</th>
-      <th>Price(CAD)</th>
-      <th>Change(1h)</th>
-    </tr>
-    <br>
-    <tr *ngFor="let coin of rest.coinData">
-      <td>{{coin.name}}</td>
-      <td>${{coin.price_cad | number:'1.2-5'}}</td>
-      <td>{{coin.percent_change_1h}}%</td>
-    </tr>
-  </table>
+<ion-content>
+  <ion-grid *ngIf="rest.coinData; else noData">
+    <ion-row>
+      <ion-col col-4>
+        <ion-item-group>
+          <ion-item-divider
+            color="dark"
+            style="text-align:center">
+            Currency
+          </ion-item-divider>
+        </ion-item-group>
+      </ion-col>
+      <ion-col col-4>
+        <ion-item-group>
+          <ion-item-divider
+            color="dark"
+            style="text-align:center">
+            Price (CAD)
+          </ion-item-divider>
+        </ion-item-group>
+      </ion-col>
+      <ion-col col-4>
+        <ion-item-group>
+          <ion-item-divider
+            color="dark"
+            style="text-align:center">
+            Change (1h)
+          </ion-item-divider>
+        </ion-item-group>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let coin of rest.coinData">
+      <ion-col col4>
+        <ion-item
+          no-lines
+          style="text-align:center">
+          {{coin.symbol}}
+        </ion-item>
+      </ion-col>
+      <ion-col col4>
+        <ion-item
+          no-lines
+          style="text-align:center">
+          ${{coin.price_cad | number: '1.2-3'}}
+        </ion-item>
+      </ion-col>
+      <ion-col col4>
+        <ion-item
+          no-lines
+          style="text-align:center"
+          [ngClass]="percentChange(coin.percent_change_1h)">
+          {{coin.percent_change_1h | number: '1.2-2'}}%
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ng-template #noData>Unable to load data :(</ng-template>
 </ion-content>
