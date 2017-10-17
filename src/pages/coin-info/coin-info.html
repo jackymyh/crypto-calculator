@@ -1,0 +1,17 @@
+<ion-row>
+  <ion-col>
+    <ion-item-group>
+      <ion-item-divider color="dark">Market Cap (CAD)</ion-item-divider>
+      <ion-item>${{coinData.market_cap_cad}}</ion-item>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider color="dark">Price (CAD)</ion-item-divider>
+      <ion-item>${{coinData.price_cad}}/ {{coinData.symbol}}</ion-item>
+      <ion-item>${{coinData.conversion}} {{coinData.symbol}}/ {{currency}}</ion-item>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider color="dark">Change (1h)</ion-item-divider>
+      <ion-item>{{coinData.percent_change_1h}}%</ion-item>
+    </ion-item-group>
+  </ion-col>
+</ion-row>

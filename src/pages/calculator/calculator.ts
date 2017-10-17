@@ -9,7 +9,7 @@ import { IonicPage } from 'ionic-angular';
   templateUrl: 'calculator.html'
 })
 export class CalculatorPage {
-  coinName: string = 'Ethereum';
+  coinName: string = 'Ethereum'; // default to load Ethereum data
   coinList: any;
   coinData: any;
   coinAmount: number;
